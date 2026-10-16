@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WanderVista - Discover Places That Stay With You</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<div id="loader" class="loader-overlay">
+<div class="loader-content">
+<div class="loader-logo">WanderVista</div>
+<div class="loader-bar"><div class="loader-progress"></div></div>
+<div class="loader-text">Preparing your journey...</div>
+</div>
+</div>
+
+<div id="scroll-progress" class="scroll-progress"></div>
+
+<nav id="navbar" class="navbar" role="navigation" aria-label="Main navigation">
+<div class="nav-container">
+<a href="#home" class="nav-logo" aria-label="WanderVista Home">WanderVista</a>
+<ul class="nav-links" id="navLinks" role="menubar">
+<li role="none"><a href="#home" class="nav-link active" role="menuitem" data-i18n="nav_home">Home</a></li>
+<li role="none"><a href="#destinations" class="nav-link" role="menuitem" data-i18n="nav_destinations">Destinations</a></li>
+<li role="none"><a href="#experiences" class="nav-link" role="menuitem" data-i18n="nav_experiences">Experiences</a></li>
+<li role="none"><a href="#packages" class="nav-link" role="menuitem" data-i18n="nav_packages">Packages</a></li>
+<li role="none"><a href="#gallery" class="nav-link" role="menuitem" data-i18n="nav_gallery">Gallery</a></li>
+<li role="none"><a href="#about" class="nav-link" role="menuitem" data-i18n="nav_about">About</a></li>
+<li role="none"><a href="#contact" class="nav-link" role="menuitem" data-i18n="nav_contact">Contact</a></li>
+</ul>
+<div class="nav-actions">
+<select id="currencySelector" class="nav-select" aria-label="Currency selector">
+<option value="INR">INR &#8377;</option>
+<option value="USD">USD $</option>
+<option value="EUR">EUR &euro;</option>
+<option value="GBP">GBP &pound;</option>
+<option value="AED">AED &#1583;.&#1573;</option>
+</select>
+<select id="languageSelector" class="nav-select" aria-label="Language selector">
+<option value="en">English</option>
+<option value="hi">Hindi</option>
+<option value="es">Spanish</option>
+<option value="fr">French</option>
+</select>
+<button class="nav-icon-btn" id="searchToggle" aria-label="Search">&#128269;</button>
+<button class="nav-icon-btn wishlist-btn" id="wishlistToggle" aria-label="Wishlist">&#10084;<span id="wishlistCount" class="badge">0</span></button>
+<button class="nav-icon-btn" id="themeToggle" aria-label="Toggle dark mode">&#9790;</button>
+<a href="#planner" class="btn btn-primary nav-cta" data-i18n="nav_plan">Plan Your Trip</a>
+<button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+<span></span><span></span><span></span>
+</button>
+</div>
+</div>
+<div class="search-dropdown" id="searchDropdown">
+<input type="text" id="globalSearch" placeholder="Search destinations, packages..." aria-label="Search">
+</div>
+</nav>
+
+<section id="home" class="hero">
+<div class="hero-bg"></div>
+<div class="hero-overlay"></div>
+<div class="floating-icons">
+<span class="float-icon fi-1">&#9992;</span>
+<span class="float-icon fi-2">&#127758;</span>
+<span class="float-icon fi-3">&#127796;</span>
+<span class="float-icon fi-4">&#9973;</span>
+<span class="float-icon fi-5">&#127752;</span>
+</div>
+<div class="hero-content">
+<h1 class="hero-title" data-i18n="hero_title">Discover Places That Stay With You</h1>
+<p class="hero-subtitle" data-i18n="hero_subtitle">Explore breathtaking destinations, unforgettable experiences, and journeys designed around you.</p>
+<div class="hero-buttons">
+<a href="#destinations" class="btn btn-primary btn-lg" data-i18n="hero_explore">Explore Destinations</a>
+<a href="#planner" class="btn btn-outline btn-lg" data-i18n="hero_plan">Plan Your Journey</a>
+</div>
+</div>
+<div class="hero-planner glass-card">
+<h3 data-i18n="planner_where">Where do you want to go?</h3>
+<form id="heroSearchForm" class="planner-form">
+<div class="form-group">
+<label for="heroDest" data-i18n="planner_dest">Destination</label>
+<select id="heroDest">
+<option value="">Select Destination</option>
+<option value="Bali">Bali</option>
+<option value="Paris">Paris</option>
+<option value="Dubai">Dubai</option>
+<option value="Switzerland">Switzerland</option>
+<option value="Tokyo">Tokyo</option>
+<option value="Maldives">Maldives</option>
+<option value="Goa">Goa</option>
+<option value="Kerala">Kerala</option>
+</select>
+</div>
+<div class="form-group">
+<label for="heroDate" data-i18n="planner_date">Travel Date</label>
+<input type="date" id="heroDate">
+</div>
+<div class="form-group">
+<label for="heroTravelers" data-i18n="planner_travelers">Travelers</label>
+<input type="number" id="heroTravelers" min="1" max="20" value="2">
+</div>
+<div class="form-group">
+<label for="heroType" data-i18n="planner_type">Travel Type</label>
+<select id="heroType">
+<option value="adventure">Adventure</option>
+<option value="relaxation">Relaxation</option>
+<option value="cultural">Cultural</option>
+<option value="romantic">Romantic</option>
+<option value="family">Family</option>
+</select>
+</div>
+<button type="submit" class="btn btn-primary btn-full" data-i18n="planner_search">Search Trips</button>
+</form>
+</div>
+<div class="scroll-indicator">
+<div class="mouse"><div class="wheel"></div></div>
+<span data-i18n="scroll_down">Scroll to explore</span>
+</div>
+</section>
+
+<section id="destinations" class="section">
+<div class="container">
+<div class="section-header reveal">
+<h2 class="section-title" data-i18n="dest_title">Explore Popular Destinations</h2>
+<p class="section-subtitle" data-i18n="dest_subtitle">Handpicked destinations loved by travelers worldwide</p>
+</div>
+<div class="filter-bar reveal" id="destFilterBar">
+<button class="filter-btn active" data-filter="all">All</button>
+<button class="filter-btn" data-filter="asia">Asia</button>
+<button class="filter-btn" data-filter="europe">Europe</button>
+<button class="filter-btn" data-filter="middle-east">Middle East</button>
+<button class="filter-btn" data-filter="india">India</button>
+</div>
+<div class="dest-grid" id="destGrid"></div>
+</div>
+</section>
+
+<section id="explorer" class="section section-alt">
+<div class="container">
+<div class="section-header reveal">
+<h2 class="section-title" data-i18n="explorer_title">Destination Explorer</h2>
+<p class="section-subtitle">Search and discover your perfect getaway</p>
+</div>
+<div class="explorer-controls reveal">
+<input type="text" id="explorerSearch" class="input-field" placeholder="Search destinations..." aria-label="Search destinations">
+<select id="explorerSort" class="input-field" aria-label="Sort destinations">
+<option value="popularity">Sort by Popularity</option>
+<option value="rating">Sort by Rating</option>
+<option value="price-low">Price: Low to High</option>
+<option value="price-high">Price: High to Low</option>
+<option value="alpha">Alphabetical</option>
+</select>
+</div>
+<div class="dest-grid" id="explorerGrid"></div>
+<p id="explorerEmpty" class="empty-message hidden">No destinations match your search.</p>
+</div>
+</section>
+
+<section id="experiences" class="section">
+<div class="container">
+<div class="section-header reveal">
+<h2 class="section-title" data-i18n="exp_title">Travel Your Way</h2>
+<p class="section-subtitle">Choose the experience that speaks to your soul</p>
+</div>
+<div class="exp-grid reveal" id="expGrid"></div>
+</div>
+</section>
+
+<section id="featured-package" class="section section-alt">
+<div class="container">
+<div class="section-header reveal">
+<h2 class="section-title">Featured Package</h2>
+<p class="section-subtitle">Our most popular travel experience</p>
+</div>
+<div class="featured-pkg reveal">
+<div class="featured-img-wrap">
+<img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&h=600&fit=crop" alt="Bali Temple" loading="lazy">
+<div class="featured-badge">Best Seller</div>
+</div>
+<div class="featured-info">
+<h3>7 Days in Bali</h3>
+<div class="featured-meta">
+<span class="meta-item">&#128197; 7 Days / 6 Nights</span>
+<span class="meta-item">&#11088; 4.9 (2.3k reviews)</span>
+</div>
+<div class="featured-details">
+<div class="detail-row"><span class="detail-icon">&#127976;</span><span>4-Star Beachfront Hotel</span></div>
+<div class="detail-row"><span class="detail-icon">&#127939;</span><span>Water Sports, Temple Tours, Rice Terraces</span></div>
+<div class="detail-row"><span class="detail-icon">&#127860;</span><span>Breakfast + 3 Dinners Included</span></div>
+<div class="detail-row"><span class="detail-icon">&#128663;</span><span>Airport Transfers Included</span></div>
+</div>
+<div class="featured-price">
+<span class="price-label">Starting from</span>
+<span class="price-amount" data-base-price="49999">&#8377;49,999</span>
+<span class="price-per">/ person</span>
+</div>
+<div class="featured-actions">
+<button class="btn btn-primary" onclick="App.openPackageModal(0)">View Package</button>
+<button class="btn btn-outline" onclick="document.getElementById('planner').scrollIntoView({behavior:'smooth'})">Book Now</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="planner" class="section">
+<div class="container">
+<div class="section-header reveal">
+<h2 class="section-title" data-i18n="trip_title">Trip Planner</h2>
+<p class="section-subtitle">Create your personalized itinerary in seconds</p>
+</div>
+<div class="planner-layout reveal">
+<div class="planner-form-card glass-card">
+<form id="tripPlannerForm">
+<div class="form-group">
+<label for="planDest">Destination</label>
+<select id="planDest" required>
+<option value="">Select Destination</option>
+<option value="Bali">Bali</option>
+<option value="Paris">Paris</option>
+<option value="Dubai">Dubai</option>
+<option value="Switzerland">Switzerland</option>
+<option value="Tokyo">Tokyo</option>
+<option value="Maldives">Maldives</option>
+<option value="Goa">Goa</option>
+<option value="Kerala">Kerala</option>
+</select>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label for="planDays">Number of Days</label>
+<input type="number" id="planDays" min="1" max="30" value="5" required>
+</div>
+<div class="form-group">
+<label for="planTravelers">Travelers</label>
+<input type="number" id="planTravelers" min="1" max="20" value="2" required>
+</div>
+</div>
+<div class="form-group">
+<label for="planBudget">Budget (per person)</label>
+<select id="planBudget">
+<option value="budget">Budget</option>
+<option value="moderate" selected>Moderate</option>
+<option value="luxury">Luxury</option>
+</select>
+</div>
+<div class="form-group">
+<label>Travel Style</label>
+<div class="radio-group" id="travelStyleGroup">
+<label class="radio-label"><input type="radio" name="travelStyle" value="budget"> Budget</label>
+<label class="radio-label"><input type="radio" name="travelStyle" value="adventure"> Adventure</label>
+<label class="radio-label"><input type="radio" name="travelStyle" value="family" checked> Family</label>
+<label class="radio-label"><input type="radio" name="travelStyle" value="luxury"> Luxury</label>
+<label class="radio-label"><input type="radio" name="travelStyle" value="romantic"> Romantic</label>
+</div>
+</div>
+<button type="submit" class="btn btn-primary btn-full">Create My Trip</button>
+</form>
+</div>
+<div class="planner-result" id="plannerResult">
+<div class="planner-placeholder">
+<span class="placeholder-icon">&#128506;</span>
+<p>Your personalized itinerary will appear here</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="calculator" class="section section-alt">
+<div class="container">
+<div class="section-header reveal">
+<h2 class="section-title">Travel Budget Calculator</h2>
+<p class="section-subtitle">Estimate your trip cost instantly</p>
+</div>
+<div class="calc-layout reveal">
+<div class="calc-form glass-card">
+<form id="budgetCalcForm">
+<div class="form-group">
+<label for="calcDest">Destination</label>
+<select id="calcDest" required>
+<option value="Bali">Bali</option>
+<option value="Paris">Paris</option>
+<option value="Dubai">Dubai</option>
+<option value="Switzerland">Switzerland</option>
+<option value="Tokyo">Tokyo</option>
+<option value="Maldives">Maldives</option>
+<option value="Goa">Goa</option>
+<option value="Kerala">Kerala</option>
+</select>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label for="calcTravelers">Travelers</label>
+<input type="number" id="calcTravelers" min="1" max="20" value="2" required>
+</div>
+<div class="form-group">
+<label for="calcDays">Days</label>
+<input type="number" id="calcDays" min="1" max="30" value="5" required>
+</div>
+</div>
+<div class="form-group">
+<label for="calcHotel">Hotel Category</label>
+<select id="calcHotel">
+<option value="budget">Budget</option>
+<option value="standard" selected>Standard</option>
+<option value="premium">Premium</option>
+<option value="luxury">Luxury</option>
+</select>
+</div>
+<div class="form-group">
+<label for="calcTransport">Transportation</label>
+<select id="calcTransport">
+<option value="public">Public Transport</option>
+<option value="rental" selected>Rental Car</option>
+<option value="taxi">Taxi</option>
+<option value="private">Private Transfer</option>
+</select>
+</div>
+<div class="form-group">
+<label for="calcActivities">Activities</label>
+<select id="calcActivities">
+<option value="basic">Basic</option>
+<option value="moderate" selected>Moderate</option>
+<option value="premium">Premium</option>
+</select>
+</div>
+<button type="submit" class="btn btn-primary btn-full">Calculate Cost</button>
+</form>
+</div>
+<div class="calc-result" id="calcResult">
+<div class="calc-placeholder">
+<span class="placeholder-icon">&#128176;</span>
+<p>Your estimated budget breakdown will appear here</p>
+</div>
+</div>
+</div>
+<p class="disclaimer-text">* Displayed conversions are estimates based on approximate exchange rates.</p>
+</div>
+</section>
+
+<section id="packages" class="section">
+<div class="container">
+<div class="section-header reveal">
+<h2 class="section-title" data-i18n="pkg_title">Travel Packages</h2>
+<p class="section-subtitle">Curated packages for every kind of traveler</p>
+</div>
+<div class="filter-bar reveal" id="pkgFilterBar">
+<button class="filter-btn active" data-filter="all">All</button>
+<button class="filter-btn" data-filter="budget">Budget</button>
+<button class="filter-btn" data-filter="luxury">Luxury</button>
+<button class="filter-btn" data-filter="adventure">Adventure</button>
+<button class="filter-btn" data-filter="family">Family</button>
+<button class="filter-btn" data-filter="romantic">Romantic</button>
+</div>
+<div class="pkg-grid" id="pkgGrid"></div>
+</div>
+</section>
+
+<section id="map-section" class="section section-alt">
+<div class="container">
+<div class="section-header reveal">
+<h2 class="section-title">Explore Our World</h2>
+<p class="section-subtitle">Click a destination to learn more</p>
+</div>
+<div class="map-container reveal" id="mapContainer">
+<svg viewBox="0 0 1000 500" class="world-map" aria-label="World map with destinations">
+<path d="M150,120 Q200,80 280,100 Q320,110 340,150 Q350,200 300,230 Q250,250 200,220 Q160,190 150,120Z" class="map-land"/>
+<path d="M420,80 Q500,60 580,90 Q620,110 630,160 Q620,220 560,240 Q480,250 430,210 Q400,170 420,80Z" class="map-land"/>
+<path d="M650,100 Q750,70 850,110 Q900,150 880,220 Q850,280 780,290 Q700,280 660,230 Q630,180 650,100Z" class="map-land"/>
+<path d="M200,280 Q260,260 300,300 Q320,350 280,400 Q230,420 190,380 Q170,340 200,280Z" class="map-land"/>
+<path d="M700,320 Q780,300 830,340 Q850,380 810,420 Q760,440 720,400 Q690,370 700,320Z" class="map-land"/>
+<g class="map-markers" id="mapMarkers">
+<circle cx="720" cy="230" r="8" class="marker" data-dest="india" tabindex="0" role="button" aria-label="India"/>
+<circle cx="790" cy="280" r="8" class="marker" data-dest="bali" tabindex="0" role="button" aria-label="Bali"/>
+<circle cx="560" cy="180" r="8" class="marker" data-dest="dubai" tabindex="0" role="button" aria-label="Dubai"/>
+<circle cx="440" cy="120" r="8" class="marker" data-dest="paris" tabindex="0" role="button" aria-label="Paris"/>
+<circle cx="830" cy="150" r="8" class="marker" data-dest="tokyo" tabindex="0" role="button" aria-label="Tokyo"/>
+<circle cx="470" cy="110" r="8" class="marker" data-dest="switzerland" tabindex="0" role="button" aria-label="Switzerland"/>
+<circle cx="680" cy="300" r="8" class="marker" data-dest="maldives" tabindex="0" role="button" aria-label="Maldives"/>
+</g>
+</svg>
+<div class="map-tooltip" id="mapTooltip"></div>
+</div>
+</div>
+</section>
+
+<section id="gallery" class="section">
+<div class="container">
+<div class="section-header reveal">
+<h2 class="section-title" data-i18n="gal_title">Travel Gallery</h2>
+<p class="section-subtitle">Moments captured by our travelers</p>
+</div>
+<div class="filter-bar reveal" id="galFilterBar">
+<button class="filter-btn active" data-filter="all">All</button>
+<button class="filter-btn" data-filter="nature">Nature</button>
+<button class="filter-btn" data-filter="beaches">Beaches</button>
+<button class="filter-btn" data-filter="cities">Cities</button>
+<button class="filter-btn" data-filter="mountains">Mountains</button>
+<button class="filter-btn" data-filter="culture">Culture</button>
+<button class="filter-btn" data-filter="wildlife">Wildlife</button>
+</div>
+<div class="masonry-grid" id="galGrid"></div>
+</div>
+</section>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Image lightbox" aria-hidden="true">
+<button class="lb-close" aria-label="Close">&times;</button>
+<button class="lb-prev" aria-label="Previous">&#10094;</button>
+<button class="lb-next" aria-label="Next">&#10095;</button>
+<img src="" alt="Gallery image" class="lb-img" id="lbImg">
+<div class="lb-counter" id="lbCounter"></div>
+</div>
+
+<section id="testimonials" class="section section-alt">
+<div class="container">
+<div class="section-header reveal">
+<h2 class="section-title">What Travelers Say</h2>
+<p class="section-subtitle">Real stories from real adventurers</p>
+</div>
+<div class="testimonial-carousel reveal">
+<div class="testimonial-track" id="testimonialTrack"></div>
+<div class="carousel-controls">
+<button class="carousel-btn" id="prevTestimonial" aria-label="Previous testimonial">&#10094;</button>
+<div class="carousel-dots" id="carouselDots"></div>
+<button class="carousel-btn" id="nextTestimonial" aria-label="Next testimonial">&#10095;</button>
+</div>
+</div>
+</div>
+</section>
+
+<section id="stats" class="section stats-section">
+<div class="container">
+<div class="stats-grid reveal" id="statsGrid">
+<div class="stat-item">
+<span class="stat-number" data-target="150">0</span><span class="stat-suffix">+</span>
+<span class="stat-label">Destinations</span>
+</div>
+<div class="stat-item">
+<span class="stat-number" data-target="25000">0</span><span class="stat-suffix">+</span>
+<span class="stat-label">Happy Travelers</span>
+</div>
+<div class="stat-item">
+<span class="stat-number" data-target="500">0</span><span class="stat-suffix">+</span>
+<span class="stat-label">Travel Experiences</span>
+</div>
+<div class="stat-item">
+<span class="stat-number" data-target="4.9" data-decimal="true">0</span><span class="stat-suffix">/5</span>
+<span class="stat-label">Average Rating</span>
+</div>
+</div>
+</div>
+</section>
+
+<section id="about" class="section">
+<div class="container">
+<div class="section-header reveal">
+<h2 class="section-title">Why Choose WanderVista</h2>
+<p class="section-subtitle">We make travel effortless and extraordinary</p>
+</div>
+<div class="features-grid reveal">
+<div class="feature-card glass-card">
+<div class="feature-icon">&#127919;</div>
+<h3>Personalized Trips</h3>
+<p>Travel plans designed around your interests, pace, and preferences.</p>
+</div>
+<div class="feature-card glass-card">
+<div class="feature-icon">&#127775;</div>
+<h3>Best Experiences</h3>
+<p>Handpicked experiences from around the world, curated by experts.</p>
+</div>
+<div class="feature-card glass-card">
+<div class="feature-icon">&#129309;</div>
+<h3>Trusted Partners</h3>
+<p>Reliable hotels, guides, and travel providers you can count on.</p>
+</div>
+<div class="feature-card glass-card">
+<div class="feature-icon">&#128222;</div>
+<h3>24/7 Support</h3>
+<p>Travel assistance whenever you need it, wherever you are.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="tips" class="section section-alt">
+<div class="container">
+<div class="section-header reveal">
+<h2 class="section-title">Travel Inspiration</h2>
+<p class="section-subtitle">Tips, guides, and stories to fuel your wanderlust</p>
+</div>
+<div class="tips-grid reveal" id="tipsGrid"></div>
+</div>
+</section>
+
+<section id="newsletter" class="section newsletter-section">
+<div class="container">
+<div class="newsletter-card glass-card reveal">
+<h2 data-i18n="news_title">Get Travel Inspiration in Your Inbox</h2>
+<p>Receive destination guides, travel tips, and exclusive offers.</p>
+<form id="newsletterForm" class="newsletter-form">
+<div class="newsletter-input-wrap">
+<input type="email" id="newsletterEmail" placeholder="Enter your email address" required aria-label="Email address">
+<button type="submit" class="btn btn-primary">Subscribe</button>
+</div>
+<p id="newsletterMsg" class="form-msg hidden"></p>
+</form>
+</div>
+</div>
+</section>
+
+<section id="contact" class="section">
+<div class="container">
+<div class="section-header reveal">
+<h2 class="section-title" data-i18n="contact_title">Contact Us</h2>
+<p class="section-subtitle">Have questions? We would love to hear from you.</p>
+</div>
+<div class="contact-layout reveal">
+<div class="contact-info">
+<div class="info-item"><span class="info-icon">&#128205;</span><div><h4>Address</h4><p>123 Travel Street, Wanderlust City, WL 10001</p></div></div>
+<div class="info-item"><span class="info-icon">&#128222;</span><div><h4>Phone</h4><p>+91 98765 43210</p></div></div>
+<div class="info-item"><span class="info-icon">&#9993;</span><div><h4>Email</h4><p>hello@wandervista.com</p></div></div>
+</div>
+<form id="contactForm" class="contact-form glass-card">
+<div class="form-row">
+<div class="form-group">
+<label for="contactName">Full Name *</label>
+<input type="text" id="contactName" required>
+<span class="field-error" id="errName"></span>
+</div>
+<div class="form-group">
+<label for="contactEmail">Email *</label>
+<input type="email" id="contactEmail" required>
+<span class="field-error" id="errEmail"></span>
+</div>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label for="contactPhone">Phone</label>
+<input type="tel" id="contactPhone">
+<span class="field-error" id="errPhone"></span>
+</div>
+<div class="form-group">
+<label for="contactDest">Destination Interest</label>
+<select id="contactDest">
+<option value="">Select</option>
+<option value="Bali">Bali</option>
+<option value="Paris">Paris</option>
+<option value="Dubai">Dubai</option>
+<option value="Other">Other</option>
+</select>
+</div>
+</div>
+<div class="form-group">
+<label for="contactDate">Travel Date</label>
+<input type="date" id="contactDate">
+</div>
+<div class="form-group">
+<label for="contactMsg">Message *</label>
+<textarea id="contactMsg" rows="4" required minlength="10"></textarea>
+<span class="field-error" id="errMsg"></span>
+</div>
+<button type="submit" class="btn btn-primary btn-full">Send Inquiry</button>
+<p id="contactSuccess" class="form-msg success hidden">Thank you! Your inquiry has been sent successfully.</p>
+</form>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-col">
+<h3>WanderVista</h3>
+<p>Making travel dreams come true since 2020. Discover the world with confidence.</p>
+</div>
+<div class="footer-col">
+<h4>Quick Links</h4>
+<ul>
+<li><a href="#destinations">Destinations</a></li>
+<li><a href="#packages">Packages</a></li>
+<li><a href="#planner">Trip Planner</a></li>
+<li><a href="#gallery">Gallery</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Support</h4>
+<ul>
+<li><a href="#contact">Contact Us</a></li>
+<li><a href="#">FAQs</a></li>
+<li><a href="#">Privacy Policy</a></li>
+<li><a href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Follow Us</h4>
+<div class="social-links">
+<a href="#" aria-label="Facebook">&#128101;</a>
+<a href="#" aria-label="Twitter">&#128172;</a>
+<a href="#" aria-label="Instagram">&#128247;</a>
+<a href="#" aria-label="YouTube">&#9654;</a>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<p>&copy; 2026 WanderVista. All rights reserved.</p>
+</div>
+</div>
+</footer>
+
+<button id="backToTop" class="back-to-top" aria-label="Back to top">&#8593;</button>
+
+<div class="modal-overlay" id="packageModal" role="dialog" aria-modal="true" aria-hidden="true">
+<div class="modal-content">
+<button class="modal-close" aria-label="Close modal">&times;</button>
+<div id="packageModalBody"></div>
+</div>
+</div>
+
+<div class="modal-overlay" id="wishlistModal" role="dialog" aria-modal="true" aria-hidden="true">
+<div class="modal-content modal-sm">
+<button class="modal-close" aria-label="Close modal">&times;</button>
+<h2>Your Wishlist</h2>
+<div id="wishlistContent"></div>
+</div>
+</div>
+
+<div class="modal-overlay" id="articleModal" role="dialog" aria-modal="true" aria-hidden="true">
+<div class="modal-content">
+<button class="modal-close" aria-label="Close modal">&times;</button>
+<div id="articleModalBody"></div>
+</div>
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/destinations.js"></script>
+<script src="js/planner.js"></script>
+<script src="js/wishlist.js"></script>
+<script src="js/gallery.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
